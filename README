@@ -1,0 +1,18 @@
+Denno Senshi Porygon is a VJ-Bot that visualizes incoming sound on
+3D objects.
+
+Currently implemented are a cube with a simple background on all faces
+and a circle with videos from a playlist.
+
+All is implemented in Puredata, you will also need the libraries Gem
+and zexy for OpenGL and diverse audio / message transformations. These
+libraries are also included in pd-extended.
+
+The incoming sound volume is mapped to the size of these two objects,
+and the brightness of the scene, the frequency distibution to the colors
+of the scene: lower sounds tend to make the scene redder, middle sound
+frequencies make the scene greener, and higher frequencies bluer. Volume
+differences between the right and left channel make the objects jitter.
+
+For a demonstration see the video at archive.org:
+http://www.archive.org/details/DemoDennoSenshiPorygon
