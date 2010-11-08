@@ -1,8 +1,8 @@
-#N canvas 110 138 339 341 10;
+#N canvas 110 138 432 341 10;
 #X obj 194 15 bng 30 250 50 0 load-pl-r empty load_playlist 32 7 1
 10 -262130 -1 -1;
 #X obj 167 233 hsl 128 30 0.1 100 1 1 brightness-r empty brightness
-0 -9 1 10 -258699 -1 -1 9000 1;
+0 -9 1 10 -258699 -1 -1 4000 1;
 #X obj 196 110 bng 30 250 50 0 stop-mov-r empty stop_movie 32 7 1 10
 -262130 -1 -1;
 #X obj 196 62 bng 30 250 50 0 next-mov-r empty next_movie 32 7 1 10
@@ -10,13 +10,13 @@
 #X obj 19 112 hsl 128 30 0.1 50 1 1 circle-jitter-r empty jitter 0
 -9 1 10 -204800 -1 -1 1500 1;
 #X obj 17 61 hsl 128 30 0.1 50 1 1 circle-size-r empty circle_size
-0 -9 1 10 -204800 -1 -1 8500 1;
+0 -9 1 10 -204800 -1 -1 9100 1;
 #X obj 17 10 tgl 30 1 toggle-circle-r empty toggle_circle 32 7 1 10
 -204800 -1 -1 1 1;
 #X obj 16 284 hsl 128 30 0.1 50 1 1 cube-jitter-r empty jitter 0 -9
 1 10 -261234 -1 -1 1400 1;
 #X obj 17 231 hsl 128 30 0.1 50 1 1 cube-size-r empty cube_size 0 -9
-1 10 -261234 -1 -1 9700 1;
+1 10 -261234 -1 -1 11600 1;
 #X obj 14 184 tgl 30 1 toggle-cube-r empty toggle_cube 32 7 1 10 -261234
 -1 -1 1 1;
 #X obj 167 181 tgl 30 1 toggle-window-r empty toggle_window 32 7 0
@@ -289,20 +289,22 @@
 #X obj 131 603 t b b;
 #N canvas 20 121 547 468 control-gem-window 0;
 #X obj 78 340 gemwin;
-#X obj 24 18 loadbang;
-#X obj 106 21 inlet;
-#X obj 24 41 t b b b b;
-#X msg 20 290 lighting 1;
-#X obj 75 108 list2symbol;
-#X msg 75 78 Denno Senshi Porygon 0.9.1;
-#X msg 74 145 dimen 800 640 \, title \$1;
-#X connect 1 0 3 0;
-#X connect 2 0 0 0;
-#X connect 3 0 4 0;
-#X connect 3 3 6 0;
+#X obj 25 16 inlet;
+#X obj 76 221 list2symbol;
+#X msg 76 191 Denno Senshi Porygon 0.9.1;
+#X obj 26 159 t a b b b;
+#X msg 181 353 dimen 800 600 \, border 0 \, offset 1366 0 \, title
+\$1;
+#X msg 83 252 dimen 800 600 \, border 1 \, offset 0 \, title \$1;
+#X msg 21 290 lighting 1 \, perspec -1 1 -1 1 1 50;
+#X connect 1 0 4 0;
+#X connect 2 0 6 0;
+#X connect 2 0 5 0;
+#X connect 3 0 2 0;
 #X connect 4 0 0 0;
-#X connect 5 0 7 0;
-#X connect 6 0 5 0;
+#X connect 4 1 7 0;
+#X connect 4 3 3 0;
+#X connect 6 0 0 0;
 #X connect 7 0 0 0;
 #X restore 60 737 pd control-gem-window;
 #X obj 83 537 sel 1 0;
@@ -318,12 +320,47 @@
 #X obj 57 204 r next-mov-r;
 #X obj 81 226 r stop-mov-r;
 #X msg 43 683 create \, 1 \, frame 25;
+#N canvas 0 0 329 415 background------ 0;
+#X obj -105 82 r toggle-background-r;
+#X obj 51 18 inlet~;
+#X obj 124 20 inlet~;
+#X obj 27 293 pix_texture;
+#X obj 50 85 +~;
+#X obj 18 185 lop~ 200;
+#X obj 51 209 bp~ 800 32;
+#X obj 101 230 hip~ 1400;
+#X obj 27 266 pix_sig2pix 16 16;
+#X obj -140 116 gemhead 65;
+#X obj 27 323 translateXYZ 0 0 -46;
+#X obj 27 349 rectangle 70 50;
+#X obj -136 180 spigot;
+#X obj -80 183 switch~ 512 32;
+#X obj -105 148 t f f;
+#X connect 0 0 14 0;
+#X connect 1 0 4 0;
+#X connect 2 0 4 1;
+#X connect 3 0 10 0;
+#X connect 4 0 5 0;
+#X connect 4 0 6 0;
+#X connect 4 0 7 0;
+#X connect 5 0 8 0;
+#X connect 6 0 8 1;
+#X connect 7 0 8 2;
+#X connect 8 0 3 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 0;
+#X connect 12 0 8 0;
+#X connect 14 0 12 1;
+#X connect 14 1 13 0;
+#X restore 560 229 pd background------;
 #X connect 0 0 6 4;
 #X connect 0 0 5 4;
 #X connect 0 0 2 1;
+#X connect 0 0 25 0;
 #X connect 0 1 6 5;
 #X connect 0 1 5 5;
 #X connect 0 1 2 2;
+#X connect 0 1 25 1;
 #X connect 1 0 11 0;
 #X connect 3 0 5 0;
 #X connect 4 0 6 0;
@@ -346,3 +383,5 @@
 #X connect 23 0 4 2;
 #X connect 24 0 11 0;
 #X restore 167 282 pd inner_workings;
+#X obj 288 185 tgl 30 0 toggle-background-r empty toggle_background
+32 7 0 10 -258113 -1 -1 1 1;
